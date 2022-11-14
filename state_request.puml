@@ -1,0 +1,17 @@
+@startuml
+skinparam titleBorderRoundCorner 15
+skinparam titleBorderThickness 2
+skinparam titleBorderColor red
+skinparam titleBackgroundColor Aquamarine
+title REQUEST entity state machine
+skinparam StateFontSize 9
+skinparam StateFontStyle bold
+skinparam StateBackgroundColor LightSteelBlue
+[*] --> OPENED
+OPENED -> ASSIGNED
+ASSIGNED -> CLOSED
+CLOSED --> [*]
+OPENED : Обращение создано по звонку клиента
+ASSIGNED : По обращению выбрана услуга\nи оно назначено на группу SL3\nа также создан заказ и инцидент
+CLOSED : обращение закрыто
+@enduml

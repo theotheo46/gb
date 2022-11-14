@@ -2,7 +2,7 @@
 skinparam titleBorderRoundCorner 15
 skinparam titleBorderThickness 2
 skinparam titleBorderColor red
-skinparam titleBackgroundColor Aqua-CadetBlue
+skinparam titleBackgroundColor Aquamarine
 title HELPDesk DB ER diagram
 ' hide the spot
 hide circle
@@ -10,12 +10,13 @@ hide circle
 skinparam linetype ortho
 skinparam ClassHeaderBackgroundColor LightSteelBlue
 skinparam classFontColor maroon
-skinparam classFontSize 11
+skinparam classFontSize 13
 skinparam classFontName Aapex
-skinparam NoteFontSize 9
+skinparam NoteFontSize 10
+skinparam NoteFontSName Aapex
 skinparam LegendBackgroundColor GreenYellow
 skinparam LegendBorderColor red
-skinparam LegendFontSize 12
+skinparam LegendFontSize 11
 
 entity "USER" as user {
   *user_id : number <<generated>>
@@ -26,12 +27,12 @@ entity "USER" as user {
   email :  text
   *manager_id : number <<FK>>
 }
-note right: USER is joined with itself \nto get manager for current user
+note right: USER is joined with itself\nto get manager for this user
 entity "ROLE" as role {
   *role_id : number <<generated>>
   --
+  role : enum
   *user_id : number <<FK>>
-  description : text
 }
 'note right: One of \n{USER, SUPERVISOR}}
 
@@ -53,19 +54,33 @@ entity "INCIDENT" as incident {
   orderid : number
   *request_id : number <<FK>>
 }
-note right: **orderid** is not FK \nbecause orders \nis not part of our DB
+note left: **orderid** is not FK \nbecause orders \nis not part of our DB
 
+entity "STATUS" as status {
+  *status_id : number <<generated>>
+  --
+  statustime : datetime
+  status : enum
+  narrative : text
+  isactive : boolean
+  *incident_id : number <<FK>>
+  *request_id : number <<FK>>
+}
 
 user ||..|| role
 user ||..|{ user
 user ||..o{ request
 request ||..o| incident
+request ||..|{ status
+incident ||..|{ status
 
 legend right
 "||..|| - One-to-One"
 "||..|{ - One-to-Many"
 "||..o{ - Zero-to-Many"
 "||..o| - Zero-to-One"
+role enum : {USER, SUPERVISOR}
+status enum : {TBD}
 endlegend
 
 @enduml

@@ -1,0 +1,26 @@
+@startuml
+skinparam titleBorderRoundCorner 15
+skinparam titleBorderThickness 2
+skinparam titleBorderColor red
+skinparam titleBackgroundColor Aquamarine
+title INCIDENT entity state machine
+skinparam StateFontSize 9
+skinparam StateFontStyle bold
+skinparam StateBackgroundColor LightSteelBlue
+[*] --> OPENED
+OPENED -> ASSIGNED
+ASSIGNED -> INWORK
+ASSIGNED -> OPENED
+INWORK -> IMPLEMENTED
+INWORK --> NEEDSREFINEMENT
+NEEDSREFINEMENT --> INWORK
+IMPLEMENTED -> CLOSED
+OPENED -> CLOSED
+CLOSED --> [*]
+OPENED : Инцидент создан после\nсоздания обращения
+ASSIGNED : Инцидент назначен на\nсотрудника SL3
+INWORK : Сотрудник SL3 на которого назначили\nинцидент взял его в работу
+NEEDSREFINEMENT : требуются уточнения
+IMPLEMENTED : инцидент выполнен
+CLOSED : инцидент закрыт
+@enduml
