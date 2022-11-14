@@ -9,7 +9,9 @@ skinparam StateFontStyle bold
 skinparam StateBackgroundColor LightSteelBlue
 [*] --> OPENED
 OPENED -> ASSIGNED
+ASSIGNED -> OPENED
 ASSIGNED -> CLOSED
+OPENED -> CLOSED
 CLOSED --> [*]
 OPENED : Обращение создано по звонку клиента
 ASSIGNED : По обращению выбрана услуга\nи оно назначено на группу SL3\nа также создан заказ и инцидент
