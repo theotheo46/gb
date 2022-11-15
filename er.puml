@@ -62,7 +62,6 @@ entity "STATUS" as status {
   statustime : datetime
   status : enum
   narrative : text
-  isactive : boolean
   *incident_id : number <<FK>>
   *request_id : number <<FK>>
 }
