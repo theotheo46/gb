@@ -1,0 +1,85 @@
+@startuml
+skinparam titleBorderRoundCorner 15
+skinparam titleBorderThickness 2
+skinparam titleBorderColor red
+skinparam titleBackgroundColor Aquamarine
+title HELPDesk DB ER diagram
+' hide the spot
+hide circle
+' avoid problems with angled crows feet
+skinparam linetype ortho
+skinparam ClassHeaderBackgroundColor LightSteelBlue
+skinparam classFontColor maroon
+skinparam classFontSize 13
+skinparam classFontName Aapex
+skinparam NoteFontSize 10
+skinparam NoteFontSName Aapex
+skinparam LegendBackgroundColor GreenYellow
+skinparam LegendBorderColor red
+skinparam LegendFontSize 11
+
+entity "USER" as user {
+  *user_id : number <<generated>>
+  --
+  name : text
+  surname : text
+  ssologin : text
+  email :  text
+  *manager_id : number <<FK>>
+}
+note right: USER is joined with itself\nto get manager for this user
+entity "ROLE" as role {
+  *role_id : number <<generated>>
+  --
+  role : enum
+  *user_id : number <<FK>>
+}
+'note right: One of \n{USER, SUPERVISOR}}
+
+entity "REQUEST" as request {
+  *request_id : number <<generated>>
+  --
+  requesttime : datetime
+  clientid : number
+  narrative : text
+  *user_id : number <<FK>>
+}
+note right: **clientid** is not FK \nbecause clients \nis not part of our DB
+
+entity "INCIDENT" as incident {
+  *incident_id : number <<generated>>
+  --
+  incidenttime : datetime
+  service : text
+  orderid : number
+  *request_id : number <<FK>>
+}
+note left: **orderid** is not FK \nbecause orders \nis not part of our DB
+
+entity "STATUS" as status {
+  *status_id : number <<generated>>
+  --
+  statustime : datetime
+  status : enum
+  narrative : text
+  *incident_id : number <<FK>>
+  *request_id : number <<FK>>
+}
+
+user ||..|| role
+user ||..|{ user
+user ||..o{ request
+request ||..o| incident
+request ||..|{ status
+incident ||..|{ status
+
+legend right
+"||..|| - One-to-One"
+"||..|{ - One-to-Many"
+"||..o{ - Zero-to-Many"
+"||..o| - Zero-to-One"
+role enum : {USER, SUPERVISOR}
+status enum : {TBD}
+endlegend
+
+@enduml

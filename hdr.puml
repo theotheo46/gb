@@ -1,0 +1,18 @@
+skinparam titleBorderRoundCorner 15
+skinparam titleBorderThickness 2
+skinparam titleBorderColor red
+skinparam titleBackgroundColor Aquamarine
+hide circle
+skinparam linetype ortho
+skinparam ClassHeaderBackgroundColor LightSteelBlue
+skinparam classFontColor maroon
+skinparam classFontSize 13
+skinparam classFontName Aapex
+skinparam NoteFontSize 10
+skinparam NoteFontSName Aapex
+skinparam LegendBackgroundColor GreenYellow
+skinparam LegendBorderColor red
+skinparam LegendFontSize 11
+skinparam StateFontSize 9
+skinparam StateFontStyle bold
+skinparam StateBackgroundColor LightSteelBlue

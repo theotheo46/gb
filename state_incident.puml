@@ -1,12 +1,8 @@
 @startuml
-skinparam titleBorderRoundCorner 15
-skinparam titleBorderThickness 2
-skinparam titleBorderColor red
-skinparam titleBackgroundColor Aquamarine
+!include hdr.puml
+
 title INCIDENT entity state machine
-skinparam StateFontSize 9
-skinparam StateFontStyle bold
-skinparam StateBackgroundColor LightSteelBlue
+
 [*] --> OPENED
 OPENED -> ASSIGNED
 ASSIGNED -> INWORK
@@ -15,7 +11,7 @@ INWORK -> IMPLEMENTED
 INWORK --> NEEDSREFINEMENT
 NEEDSREFINEMENT --> INWORK
 IMPLEMENTED -> CLOSED
-OPENED -> CLOSED
+OPENED -> CLOSED : инцидент заведен по ошибке
 CLOSED --> [*]
 OPENED : Инцидент создан после\nсоздания обращения
 ASSIGNED : Инцидент назначен на\nсотрудника SL3
