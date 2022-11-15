@@ -11,7 +11,7 @@ entity "SERVICEREQUEST" as request {
   narrative : text
   userid : number
 }
-note right: **clientid** and **userid** are not FK \nbecause they are not part of our DB
+note right: **clientid** and **userid** are not FK \nbecause these entities are not\npart of our DB
 
 entity "INCIDENT" as incident {
   *incident_id : number <<generated>>
@@ -21,7 +21,7 @@ entity "INCIDENT" as incident {
   orderid : number
   *servicerequest_id : number <<FK>>
 }
-note left: **orderid** and **serviceid** are not FK \nbecause they are not part of our DB
+note left: **orderid** and **serviceid** are not FK \nbecause these entities are not\npart of our DB
 
 entity "STATUS" as status {
   *status_id : number <<generated>>

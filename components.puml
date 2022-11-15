@@ -1,0 +1,19 @@
+@startuml
+!include hdr.puml
+
+title HELPDesk components diagram
+
+CreateSRByClient -right- [SRManager]
+GetSRByUser -left- [SRManager]
+CloseSR -right- [SRManager]
+CreateIncByService -down- [SRManager]
+
+GetIncByClient -up- [IncManager]
+GetIncByUser -right- [IncManager]
+UnbindInc -down- [IncManager]
+
+GetOrderByID -up- [LegacyAdapter]
+CreateOrderByService -right- [LegacyAdapter]
+
+
+@enduml
