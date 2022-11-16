@@ -72,10 +72,10 @@ service ||..|| servicegroup
 incident ||..|| service
 
 legend right
-"||..|| - 1..1
-"||..|{ - 1..*"
-"||..o{ - 0..*"
-"||..o| - 0..1"
+||..|| - 1..1
+||..|{ - 1..*
+||..o{ - 0..*
+||..o| - 0..1
 endlegend
 
 @enduml
