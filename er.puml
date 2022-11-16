@@ -72,10 +72,10 @@ service ||..|| servicegroup
 incident ||..|| service
 
 legend right
-"||..|| - from One to One"
-"||..|{ - from One to Many"
-"||..o{ - from Zero to Many"
-"||..o| - from Zero to One"
+"||..|| - 1..1
+"||..|{ - 1..*"
+"||..o{ - 0..*"
+"||..o| - 0..1"
 endlegend
 
 @enduml
