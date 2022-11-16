@@ -8,6 +8,7 @@ entity "SERVICEREQUEST" as servicerequest {
   --
   requesttime : datetime
   narrative : text
+  legacyclientid : number
   userid : number
 }
 'note right: **clientid** and **userid** are not FK \nbecause these entities are not\npart of our DB
