@@ -3,7 +3,7 @@
 
 title HELPDesk DB ER diagram
 
-entity "SERVICEREQUEST" as request {
+entity "SERVICEREQUEST" as servicerequest {
   *servicerequest_id : number <<generated>>
   --
   requesttime : datetime
@@ -11,17 +11,17 @@ entity "SERVICEREQUEST" as request {
   narrative : text
   userid : number
 }
-note right: **clientid** and **userid** are not FK \nbecause these entities are not\npart of our DB
+'note right: **clientid** and **userid** are not FK \nbecause these entities are not\npart of our DB
 
 entity "INCIDENT" as incident {
   *incident_id : number <<generated>>
   --
   incidenttime : datetime
   serviceid : number
-  orderid : number
+  userid : number
   *servicerequest_id : number <<FK>>
 }
-note left: **orderid** and **serviceid** are not FK \nbecause these entities are not\npart of our DB
+'note left: **orderid** and **serviceid** are not FK \nbecause these entities are not\npart of our DB
 
 entity "STATUS" as status {
   *status_id : number <<generated>>
@@ -33,10 +33,43 @@ entity "STATUS" as status {
   *servicerequest_id : number <<FK>>
 }
 
+entity "CLIENT" as client {
+  *client_id : number <<generated>>
+  --
+  name : text
+  middlename : text
+  surname : text
+  phonenumber : text <<Unique>>
+  email : text
+  inn : number
+  firmname : text
+  *servicerequest_id : number <<FK>>
+}
 
-request ||..o| incident
-request ||..|{ status
+entity "SERVICE" as service {
+  *service_id : number <<generated>>
+  --
+  code : text <<Unique>>
+  description : text
+  email : text
+  *incident_id : number <<FK>>
+}
+
+entity "SERVICEGROUP" as servicegroup {
+  *servicegroup_id : number <<generated>>
+  --
+  code : text <<Unique>>
+  description : text
+  managerid : number
+  *service_id : number <<FK>>
+}
+
+servicerequest ||..o| incident
+servicerequest ||..|{ status
 incident ||..|{ status
+servicerequest ||..|| client
+service ||..|| servicegroup
+incident ||..|| service
 
 legend right
 "||..|| - One-to-One"
