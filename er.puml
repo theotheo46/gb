@@ -7,7 +7,6 @@ entity "SERVICEREQUEST" as servicerequest {
   *servicerequest_id : number <<generated>>
   --
   requesttime : datetime
-  clientid : number
   narrative : text
   userid : number
 }
@@ -17,7 +16,7 @@ entity "INCIDENT" as incident {
   *incident_id : number <<generated>>
   --
   incidenttime : datetime
-  serviceid : number
+  businessprocess : text
   userid : number
   *servicerequest_id : number <<FK>>
 }
