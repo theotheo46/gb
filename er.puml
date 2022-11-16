@@ -1,7 +1,7 @@
 @startuml
 !include hdr.puml
 
-title HELPDesk DB ER diagram
+title ServiceManager DB ER diagram
 
 entity "SERVICEREQUEST" as servicerequest {
   *servicerequest_id : number <<generated>>
