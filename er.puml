@@ -8,8 +8,8 @@ entity "SERVICEREQUEST" as servicerequest {
   --
   requesttime : datetime
   narrative : text
-  legacyclientid : number
   userid : number
+  *order_id : number <<FK>>
 }
 'note right: **clientid** and **userid** are not FK \nbecause these entities are not\npart of our DB
 
@@ -21,13 +21,13 @@ entity "INCIDENT" as incident {
   userid : number
   *servicerequest_id : number <<FK>>
 }
-'note left: **orderid** and **serviceid** are not FK \nbecause these entities are not\npart of our DB
+'note right: **orderid** and **serviceid** are not FK \nbecause these entities are not\npart of our DB
 
 entity "STATUS" as status {
   *status_id : number <<generated>>
   --
   statustime : datetime
-  status : enum
+  status : enum (from State Machine)
   narrative : text
   *incident_id : number <<FK>>
   *servicerequest_id : number <<FK>>
@@ -43,7 +43,16 @@ entity "CLIENT" as client {
   email : text
   inn : number
   firmname : text
-  *servicerequest_id : number <<FK>>
+}
+
+entity "ORDER" as order {
+  *order_id : number <<generated>>
+  --
+  orderdate : datetime
+  code : text <<Unique>>
+  narrative : text
+  cost : number
+  *client_id : number <<FK>>
 }
 
 entity "SERVICE" as service {
@@ -51,7 +60,6 @@ entity "SERVICE" as service {
   --
   code : text <<Unique>>
   description : text
-  email : text
   *incident_id : number <<FK>>
 }
 
@@ -60,6 +68,7 @@ entity "SERVICEGROUP" as servicegroup {
   --
   code : text <<Unique>>
   description : text
+  groupemail : text
   managerid : number
   *service_id : number <<FK>>
 }
@@ -67,15 +76,16 @@ entity "SERVICEGROUP" as servicegroup {
 servicerequest ||..o| incident
 servicerequest ||..|{ status
 incident ||..|{ status
-servicerequest ||..o| client
+client ||..|{ order
 service ||..|| servicegroup
 incident ||..|| service
+order ||..o{ servicerequest
 
-legend right
-||..|| - 1..1
-||..|{ - 1..*
-||..o{ - 0..*
-||..o| - 0..1
-endlegend
+'legend left
+'||..|| - 1..1
+'||..|{ - 1..*
+'||..o{ - 0..*
+'||..o| - 0..1
+'endlegend
 
 @enduml
