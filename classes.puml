@@ -1,0 +1,95 @@
+@startuml
+!include hdr.puml
+
+title ServiceManager classes diagram
+
+
+package Model #DDDDDD {
+class Client {
+  name : String
+  middlename : String
+  surname : String
+  phonenumber : String
+  email : String
+  inn : Integer
+  firmname : String
+}
+class Order {
+  orderdate : Date
+  code : String
+  narrative : String
+  cost : BigDecimal
+}
+
+class Servicerequest {
+  requesttime : Date
+  narrative : String
+  userid : Integer
+}
+
+class Incident {
+  incidenttime : Date
+  businessprocess : String
+  userid : Integer
+}
+
+class Status {
+  statustime : Date
+  status : String
+  narrative : String
+}
+
+class Service {
+  code : String
+  description : String
+}
+
+class Servicegroup {
+  code : String
+  description : String
+  groupemail : String
+  managerid : Integer
+}
+}
+
+
+
+Client "1" o-- "*" Order
+Order "0" o-- "*" Servicerequest
+Servicerequest "0" o-- "1" Incident
+Incident "1" o-- "1" Service
+Service "1" o-- "1" Servicegroup
+Incident "1" o-- "*" Status
+Servicerequest "1" o-- "*" Status
+
+
+package Services #DDDDDD {
+class ServiceRequestManager {
+}
+
+class IncidentManager {
+}
+
+class ClientManager {
+}
+
+class OrderManager {
+}
+}
+
+package RestServices #DDDDDD {
+class TaskManager {
+}
+}
+
+ServiceRequestManager ..> Servicerequest
+IncidentManager ..> Incident
+ClientManager ..> Client
+OrderManager ..> Order
+TaskManager o-- IncidentManager
+TaskManager o-- ServiceRequestManager
+TaskManager o-- ClientManager
+TaskManager o-- OrderManager
+
+
+@enduml
