@@ -54,7 +54,7 @@ package Model #DDDDDD {
 Client "1" o-- "*" Order
 Order "0" o-- "*" Servicerequest
 Servicerequest "0" o-- "1" Incident
-Incident "1" o-- "1" Service
+Incident "1 " o-- "1" Service
 Service "1" o-- "1" Servicegroup
 Incident "1" o-- "*" Status
 Servicerequest "1" o-- "*" Status
@@ -62,13 +62,10 @@ Servicerequest "1" o-- "*" Status
 package Services #DDDDDD {
     class ServiceRequestManager {
     }
-
     class IncidentManager {
     }
-
     class ClientManager {
     }
-
     class OrderManager {
     }
 }
@@ -78,10 +75,10 @@ package RestServices #DDDDDD {
     }
 }
 
-ServiceRequestManager ..> Servicerequest
-IncidentManager ..> Incident
-ClientManager ..> Client
-OrderManager ..> Order
+ServiceRequestManager ..> Servicerequest : with Repository
+IncidentManager ..> Incident : with Repository
+ClientManager ..> Client : with Repository
+OrderManager ..> Order : with Repository
 TaskManager o-- IncidentManager
 TaskManager o-- ServiceRequestManager
 TaskManager o-- ClientManager
