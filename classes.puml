@@ -3,7 +3,7 @@
 
 title CRM classes diagram
 
-package Model #DDDDDD {
+package Models #DDDDDD {
     class Client {
       name : String
       middlename : String
@@ -56,8 +56,8 @@ Order "0 " o-- "* " Servicerequest
 Servicerequest "0" o-- "1" Incident
 Incident "1 " o-- "1" Service
 Service "1" o-- "1" Servicegroup
-Incident "1" o-- "*" Status
-Servicerequest "1" o-- "*" Status
+Incident "1" *-- "*" Status
+Servicerequest "1" *-- "*" Status
 
 package Services #DDDDDD {
     class ServiceRequestManager {
@@ -78,7 +78,7 @@ package Services #DDDDDD {
     }
 }
 
-package RestServices #DDDDDD {
+package RestControllers #DDDDDD {
     class TaskManager {
     }
 }
