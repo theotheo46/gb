@@ -1,7 +1,7 @@
 @startuml
 !include hdr.puml
 
-title ServiceManager DB ER diagram
+title CRM DB ER diagram
 
 entity "SERVICEREQUEST" as servicerequest {
   *servicerequest_id : number <<generated>>
