@@ -35,7 +35,6 @@ alt authentificated
     WebApplication -> WebApplication : store bearer token
     WebApplication -> WebApplication : inject bearer token in the HEADER of HTTP request
     == Logout ==
-    activate WebApplication  
     WebApplication -> WebApplication : logout
     WebApplication -> Keycloak: logout
     deactivate WebApplication
