@@ -73,11 +73,11 @@ entity "SERVICEGROUP" as servicegroup {
   *service_id : number <<FK>>
 }
 
-servicerequest ||..o| incident
+servicerequest ||.o| incident
 servicerequest ||..|{ status
 incident ||..|{ status
-client ||..|{ order
-service ||..|| servicegroup
+client ||...|{ order
+service ||.|| servicegroup
 incident ||..|| service
 order ||..o{ servicerequest
 

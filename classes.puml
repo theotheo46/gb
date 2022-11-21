@@ -51,13 +51,13 @@ package Models #DDDDDD {
     }
 }
 
-Client "1  " o-- "*  " Order
-Order "0 " o-- "* " Servicerequest
-Servicerequest "0" o-- "1" Incident
-Incident "1 " o-- "1" Service
-Service "1" o-- "1" Servicegroup
-Incident "1" *-- "*" Status
-Servicerequest "1" *-- "*" Status
+Client "1  " -- "*" Order
+Order "0 " -- "* " Servicerequest
+Servicerequest "0" - "1" Incident
+Incident "1 " -- "1  " Service
+Service "1" - "1" Servicegroup
+Incident "1" -- "*" Status
+Servicerequest "1" -- "*" Status
 
 package Services #DDDDDD {
     class ServiceRequestManager {
@@ -124,5 +124,5 @@ TaskManager o-- OrderProxy
 ClientProxy o-- ClientManager
 ClientProxy o-- LegacyClientAdapter
 OrderProxy o-- OrderManager
-OrderProxy o-- LegacyOrderAdapter
+OrderProxy o- LegacyOrderAdapter
 @enduml

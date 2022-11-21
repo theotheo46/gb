@@ -6,7 +6,8 @@ hide circle
 skinparam linetype ortho
 skinparam ClassHeaderBackgroundColor LightSteelBlue
 skinparam classFontColor maroon
-skinparam classFontSize 13
+skinparam classFontSize 14
+skinparam classFontStyle bold
 skinparam classFontName Aapex
 skinparam NoteFontSize 10
 skinparam NoteFontSName Aapex
