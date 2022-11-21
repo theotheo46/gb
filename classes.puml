@@ -51,6 +51,17 @@ package Models #DDDDDD {
     }
 }
 
+package Repositories #DDDDDD {
+    class ClientRepository {
+    }
+    class OrderRepository {
+    }
+    class ServiceRequestRepository {
+    }
+    class IncidentRepository {
+    }
+}
+
 Client "1  " -- "*" Order
 Order "0 " -- "* " Servicerequest
 Servicerequest "0" - "1" Incident
@@ -113,10 +124,10 @@ package RestControllers #DDDDDD {
     }
 }
 
-ServiceRequestManager ..> Servicerequest
-IncidentManager ..> Incident
-ClientManager ..> Client
-OrderManager ..> Order
+ServiceRequestManager o-- ServiceRequestRepository
+IncidentManager o-- IncidentRepository
+ClientManager o-- ClientRepository
+OrderManager o-- OrderRepository
 TaskManager o-- IncidentManager
 TaskManager o-- ServiceRequestManager
 TaskManager o-- ClientProxy
@@ -125,4 +136,9 @@ ClientProxy o-- ClientManager
 ClientProxy o-- LegacyClientAdapter
 OrderProxy o-- OrderManager
 OrderProxy o- LegacyOrderAdapter
+ServiceRequestRepository ..> Servicerequest
+IncidentRepository ..> Incident
+ClientRepository ..> Client
+OrderRepository ..> Order
+
 @enduml
