@@ -112,15 +112,21 @@ package Services #DDDDDD {
 }
 
 package RestControllers #DDDDDD {
-    class TaskManager {
-      CreateNewOrder() : Order
-      GetOrderList() : List<Order>
-      GetSRListByUser(User u) : List<ServiceRequest>
-      SetSRStatus(ServiceRequest sr, Status st)
-      GetIncListByUser(User u) : List<Incident>
-      SetIncStatus(Incident inc, Status st)
-      GetClientList() : List<Client>
-      CreateNewClient() : Client
+    class ClientRestController {
+        CreateNewClient() : Client
+        GetClientList() : List<Client>
+    }
+    class OrderRestController {
+        CreateNewOrder() : Order
+        GetOrderList() : List<Order>
+    }
+    class ServiceRequestRestController {
+        GetSRListByUser(User u) : List<ServiceRequest>
+        SetSRStatus(ServiceRequest sr, Status st)
+    }
+    class IncidentRestController {
+        GetIncListByUser(User u) : List<Incident>
+        SetIncStatus(Incident inc, Status st)
     }
 }
 
@@ -128,10 +134,10 @@ ServiceRequestManager o-- ServiceRequestRepository
 IncidentManager o-- IncidentRepository
 ClientManager o-- ClientRepository
 OrderManager o-- OrderRepository
-TaskManager o-- IncidentManager
-TaskManager o-- ServiceRequestManager
-TaskManager o-- ClientProxy
-TaskManager o-- OrderProxy
+IncidentRestController o-- IncidentManager
+ServiceRequestRestController o-- ServiceRequestManager
+ClientRestController o-- ClientProxy
+OrderRestController o-- OrderProxy
 ClientProxy o-- ClientManager
 ClientProxy o-- LegacyClientAdapter
 OrderProxy o-- OrderManager
