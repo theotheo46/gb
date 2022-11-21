@@ -76,7 +76,7 @@ entity "SERVICEGROUP" as servicegroup {
 servicerequest ||.o| incident
 servicerequest ||..|{ status
 incident ||..|{ status
-client ||...|{ order
+client ||..|{ order
 service ||.|| servicegroup
 incident ||..|| service
 order ||..o{ servicerequest
