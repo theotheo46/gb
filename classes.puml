@@ -96,10 +96,10 @@ package Services #DDDDDD {
             GetOrderByID(Integer id) : Order
     }
     class ClientManager {
-    All interfaces impl from ClientProxy
+    All methods from ClientProxy
     }
     class OrderManager {
-    All interfaces impl from OrderProxy
+    All methods from OrderProxy
     }
     class LegacyClientAdapter {
         GetLegClientList() : List<Client>
