@@ -12,8 +12,8 @@ rectangle  Приложение as Application {
   }
   package Заказы as Orders {
     usecase "просмотр списка" as uc_order_list
-    usecase "просмотр списка по клиенту" as uc_order_by_client_list
-    usecase "поиск по имени" as uc_order_find
+'    usecase "просмотр списка по клиенту" as uc_order_by_client_list
+    usecase "поиск по клиенту" as uc_order_find
     usecase "создание" as uc_order_add
   }
   package Обращения as ServiceRequests {
@@ -32,7 +32,7 @@ User --> uc_client_find
 User --> uc_client_edit
 User --> uc_client_add
 User --> uc_order_list
-User --> uc_order_by_client_list
+' User --> uc_order_by_client_list
 User --> uc_order_find
 User --> uc_order_add
 User --> uc_ser_req_list
