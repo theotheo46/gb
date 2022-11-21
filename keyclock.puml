@@ -1,0 +1,48 @@
+@startuml
+autonumber
+title Login/Logout OpenID flow (Keycloak adapter)
+
+box "Frontend" #LightBlue
+	participant Browser
+	participant WebApplication
+end box
+box "Backend" #LightGreen
+	participant Keycloak
+end box
+== Login ==
+alt Not authentificated
+    Browser -> WebApplication : request SPA
+    activate WebApplication
+    WebApplication -> WebApplication : check-sso 
+    WebApplication -> Browser : redirect to keycloak login page
+    deactivate WebApplication
+
+    Browser -> Keycloak : request login page 
+    Keycloak -> Browser  : login page
+    activate Keycloak
+    Browser -> Keycloak : login
+    Keycloak -> Browser: redirect SPA and authentification code
+    deactivate Keycloak
+    Browser -> WebApplication : request SPA
+    activate WebApplication
+    WebApplication -> WebApplication : check-sso 
+    WebApplication -> Keycloak : request access token
+    deactivate WebApplication
+    Keycloak -> WebApplication: access token + refresh token
+end
+alt authentificated
+    activate WebApplication
+    WebApplication -> WebApplication : store bearer token
+    WebApplication -> WebApplication : inject bearer token in the HEADER of HTTP request
+    == Logout ==
+    activate WebApplication  
+    WebApplication -> WebApplication : logout
+    WebApplication -> Keycloak: logout
+    deactivate WebApplication
+end
+alt Not authentificated
+    Keycloak -> Browser : redirect
+    Browser -> WebApplication : request SPA
+end
+@enduml
+
