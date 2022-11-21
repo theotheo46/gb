@@ -73,14 +73,14 @@ package Services #DDDDDD {
     class ClientProxy {
         GetClientList() : List<Client>
         GetClientByPNumber(String pNumber) : Client
-        UpdateClientByID(Integer id)
+        UpdateClientByID(Integer id, Client cl)
         CreateNewClient() : Client
         GetClientByID(Integer id) : Client
     }
     class OrderProxy {
             GetOrderList() : List<Order>
             GetOrderByCode(String code) : Order
-            UpdateOrderID(Integer id)
+            UpdateOrderID(Integer id, Order or)
             CreateNewOrder() : Order
             GetOrderByID(Integer id) : Order
     }
