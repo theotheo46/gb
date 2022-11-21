@@ -1,0 +1,48 @@
+@startuml
+left to right direction
+"Пользователь" as User
+"Менеджер" as Manager
+"Клиент" as Client
+rectangle  Приложение as Application {
+  package Клиенты as Clients {
+    usecase "просмотр списка" as uc_client_list
+    usecase "поиск по имени" as uc_client_find
+    usecase "редактирование" as uc_client_edit
+    usecase "создание" as uc_client_add
+  }
+  package Заказы as Orders {
+    usecase "просмотр списка" as uc_order_list
+    usecase "просмотр списка по клиенту" as uc_order_by_client_list
+    usecase "поиск по имени" as uc_order_find
+    usecase "создание" as uc_order_add
+  }
+  package Обращения as ServiceRequests {
+    usecase "просмотр списка" as uc_ser_req_list
+    usecase "создание" as uc_ser_req_add
+    usecase "закрытие" as uc_ser_req_close
+  }
+  package Dashboard {
+    usecase "просмотр" as uc_dashboard_show
+    usecase "редактирование" as uc_dashboard_edit
+    usecase "нотификация" as uc_dashboard_notify
+  }
+}
+User --> uc_client_list
+User --> uc_client_find
+User --> uc_client_edit
+User --> uc_client_add
+User --> uc_order_list
+User --> uc_order_by_client_list
+User --> uc_order_find
+User --> uc_order_add
+User --> uc_ser_req_list
+User --> uc_ser_req_add
+User --> uc_ser_req_close
+User --> uc_dashboard_show
+User --> uc_dashboard_edit
+User --> uc_dashboard_notify
+Manager --> uc_dashboard_show
+Manager --> uc_dashboard_edit
+Manager --> uc_dashboard_notify
+Client --> uc_dashboard_notify
+@enduml
