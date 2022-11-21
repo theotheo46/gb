@@ -61,25 +61,55 @@ Servicerequest "1" *-- "*" Status
 
 package Services #DDDDDD {
     class ServiceRequestManager {
+        GetSRListByUser(User u) : List<ServiceRequest>
+        SetSRStatus(ServiceRequest sr, Status st)
+        CreateSRByClient(Client cl) : ServiceRequest
     }
     class IncidentManager {
+          GetIncListByUser(User u) : List<Incident>
+          SetIncStatus(Incident inc, Status st)
+          CreateIncBySR(ServiceRequest sr) : Incident
     }
     class ClientProxy {
+        GetClientList() : List<Client>
+        GetClientByPNumber(String pNumber) : Client
+        UpdateClientByID(Integer id)
+        CreateNewClient() : Client
+        GetClientByID(Integer id) : Client
     }
     class OrderProxy {
+            GetOrderList() : List<Order>
+            GetOrderByCode(String code) : Order
+            UpdateOrderID(Integer id)
+            CreateNewOrder() : Order
+            GetOrderByID(Integer id) : Order
     }
     class ClientManager {
+    All interfaces impl from ClientProxy
     }
     class OrderManager {
+    All interfaces impl from OrderProxy
     }
     class LegacyClientAdapter {
+        GetLegClientList() : List<Client>
+        GetLegClientByPNumber(String pNumber) : Client
     }
     class LegacyOrderAdapter {
+        GetLegOrderList() : List<Order>
+        GetLegOrderByCode(String code) : Order
     }
 }
 
 package RestControllers #DDDDDD {
     class TaskManager {
+      CreateNewOrder() : Order
+      GetOrderList() : List<Order>
+      GetSRListByUser(User u) : List<ServiceRequest>
+      SetSRStatus(ServiceRequest sr, Status st)
+      GetIncListByUser(User u) : List<Incident>
+      SetIncStatus(Incident inc, Status st)
+      GetClientList() : List<Client>
+      CreateNewClient() : Client
     }
 }
 
