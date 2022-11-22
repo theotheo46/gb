@@ -121,12 +121,12 @@ package RestControllers #DDDDDD {
         GetOrderList() : List<Order>
     }
     class ServiceRequestRestController {
-        GetSRListByUser(User u) : List<ServiceRequest>
-        SetSRStatus(ServiceRequest sr, Status st)
+        GetSRListByUser(Integer userID) : List<ServiceRequest>
+        SetSRStatus(Integer srID, Status st)
     }
     class IncidentRestController {
-        GetIncListByUser(User u) : List<Incident>
-        SetIncStatus(Incident inc, Status st)
+        GetIncListByUser(Integer userID) : List<Incident>
+        SetIncStatus(Integer incID, Status st)
     }
 }
 
