@@ -5,7 +5,7 @@ left to right direction
 "Клиент" as Client
 rectangle  Приложение as Application {
   package Клиенты as Clients {
-    usecase "просмотр списка" as uc_client_list
+    usecase "нци" as uc_client_list
     usecase "поиск по имени" as uc_client_find
     usecase "редактирование" as uc_client_edit
     usecase "создание" as uc_client_add
