@@ -1,11 +1,15 @@
 @startuml
 left to right direction
-"Пользователь" as User
-"Менеджер" as Manager
-"Клиент" as Client
+'skinparam linetype ortho
 rectangle  Приложение as Application {
+  "Неидентифицированный пользователь" as Unknown
+  package "Авторизированные пользователи" as Auth {
+    "Пользователь" as User
+    "Менеджер" as Manager
+    "Клиент" as Client
+  }
   package Клиенты as Clients {
-    usecase "нци" as uc_client_list
+    usecase "просмотр списка" as uc_client_list
     usecase "поиск по имени" as uc_client_find
     usecase "редактирование" as uc_client_edit
     usecase "создание" as uc_client_add
@@ -26,15 +30,19 @@ rectangle  Приложение as Application {
     usecase "редактирование" as uc_dashboard_edit
     usecase "нотификация" as uc_dashboard_notify
   }
+  package Keycloak {
+    usecase "Аутентификация" as uc_keyclock_auth
+  }
 }
-User --> uc_client_list
-User --> uc_client_find
-User --> uc_client_edit
-User --> uc_client_add
-User --> uc_order_list
+Unknown -up-> uc_keyclock_auth
+User -up-> uc_client_add
+User -up-> uc_client_list
+User -up-> uc_client_find
+User -up-> uc_client_edit
+User -up-> uc_order_list
 ' User --> uc_order_by_client_list
-User --> uc_order_find
-User --> uc_order_add
+User -up-> uc_order_find
+User -up-> uc_order_add
 User --> uc_ser_req_list
 User --> uc_ser_req_add
 User --> uc_ser_req_close

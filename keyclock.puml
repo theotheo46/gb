@@ -1,47 +1,47 @@
 @startuml
 autonumber
-title Login/Logout OpenID flow (Keycloak adapter)
+title Вход/выход из системы с использованием Keycloak SSO [Single sign-on]
 
-box "Frontend" #LightBlue
-	participant Browser
-	participant WebApplication
+box "Frontend" #LightCyan
+	participant "Пользователь (Браузер)" as Browser
+	participant "Веб приложение" as WebApplication
 end box
-box "Backend" #LightGreen
+box "Backend" #LightBlue
 	participant Keycloak
 end box
-== Login ==
-alt Not authentificated
-    Browser -> WebApplication : request SPA
+== Вход в систему ==
+alt Не проверенный
+    Browser -> WebApplication : запросить SPA
     activate WebApplication
-    WebApplication -> WebApplication : check-sso 
-    WebApplication -> Browser : redirect to keycloak login page
+    WebApplication -> WebApplication : проверить SSO
+    WebApplication -> Browser : перенаправление на страницу входа в систему keycloak
     deactivate WebApplication
 
-    Browser -> Keycloak : request login page 
-    Keycloak -> Browser  : login page
+    Browser -> Keycloak : запросить страницу входа в систему
+    Keycloak -> Browser  : страница входа в систему
     activate Keycloak
     Browser -> Keycloak : login
-    Keycloak -> Browser: redirect SPA and authentification code
+    Keycloak -> Browser: перенаправление SPA и кода аутентификации
     deactivate Keycloak
-    Browser -> WebApplication : request SPA
+    Browser -> WebApplication : запрос SPA
     activate WebApplication
-    WebApplication -> WebApplication : check-sso 
-    WebApplication -> Keycloak : request access token
+    WebApplication -> WebApplication : проверить SSO
+    WebApplication -> Keycloak : запросить маркер доступа
     deactivate WebApplication
-    Keycloak -> WebApplication: access token + refresh token
+    Keycloak -> WebApplication: маркер доступа + маркер обновления
 end
-alt authentificated
+alt Подтвержденный
     activate WebApplication
-    WebApplication -> WebApplication : store bearer token
-    WebApplication -> WebApplication : inject bearer token in the HEADER of HTTP request
-    == Logout ==
-    WebApplication -> WebApplication : logout
-    WebApplication -> Keycloak: logout
+    WebApplication -> WebApplication : хранить токен предъявителя
+    WebApplication -> WebApplication : внедрить токен предъявителя в HEADER HTTP-запроса
+    == Выход из системы ==
+    WebApplication -> WebApplication : выход из системы
+    WebApplication -> Keycloak: выход из системы
     deactivate WebApplication
 end
-alt Not authentificated
-    Keycloak -> Browser : redirect
-    Browser -> WebApplication : request SPA
+alt Не проверенный
+    Keycloak -> Browser : перенаправить
+    Browser -> WebApplication : запрос SPA
 end
 @enduml
 
