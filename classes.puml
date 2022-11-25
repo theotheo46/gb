@@ -1,7 +1,7 @@
 @startuml
 !include hdr.puml
 
-title CRM classes diagram
+'title CRM classes diagram
 
 package Models #DDDDDD {
     class Client {
