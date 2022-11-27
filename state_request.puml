@@ -1,7 +1,6 @@
 @startuml
 !include hdr.puml
 
-title SERVICEREQUEST entity state machine
 
 [*] --> OPENED
 OPENED -> ASSIGNED
