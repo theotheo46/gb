@@ -1,6 +1,7 @@
 @startuml
 !include hdr.puml
 
+'title INCIDENT entity state machine
 
 [*] --> OPENED
 OPENED -> ASSIGNED
