@@ -9,11 +9,13 @@ skinparam classFontColor maroon
 skinparam classFontSize 14
 skinparam classFontStyle bold
 skinparam classFontName Aapex
-skinparam NoteFontSize 10
+skinparam NoteFontSize 12
 skinparam NoteFontSName Aapex
 skinparam LegendBackgroundColor GreenYellow
 skinparam LegendBorderColor red
 skinparam LegendFontSize 11
-skinparam StateFontSize 9
+skinparam StateFontSize 14
 skinparam StateFontStyle bold
 skinparam StateBackgroundColor LightSteelBlue
+
+skinparam ActivityFontSize 16
