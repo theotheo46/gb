@@ -1,6 +1,6 @@
 @startuml
 autonumber
-title Вход/выход из системы с использованием Keycloak SSO [Single sign-on]
+'title Вход/выход из системы с использованием Keycloak SSO [Single sign-on]
 
 box "Frontend" #LightCyan
 	participant "Пользователь (Браузер)" as Browser
