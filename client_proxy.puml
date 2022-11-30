@@ -4,7 +4,7 @@
 autonumber
 title Прокси динамической миграции
 
-participant "Внешний клиент" as ExternalСlient
+participant "Иной сервис" as ExternalService
 
 box Service #LightCyan
 	participant ClientProxy
@@ -14,7 +14,7 @@ box Legacy #LightBlue
 	participant LegacyClientAdapter
 end box
 
-ExternalСlient -> ClientProxy: Запрос списка клиентов
+ExternalService -> ClientProxy: Запрос списка клиентов
 alt работа с Legacy
 ClientProxy ->> LegacyClientAdapter: Запрос списка клиентов из Legacy
 LegacyClientAdapter -->> ClientProxy: Получение списка клиентов
@@ -23,7 +23,7 @@ end
 ClientProxy -> ClientManager: Запрос списка клиентов
 ClientManager --> ClientProxy: Получение списка клиентов
 ClientProxy -> ClientProxy: Получение недостающих из кэша
-ExternalСlient <-- ClientProxy: Получение списка клиентов
+ExternalService <-- ClientProxy: Получение списка клиентов
 ClientProxy -> ClientManager: Сохранение недостающих клиентов
 
 
