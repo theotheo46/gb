@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+title Прокси динамической миграции
+
+participant "Внешний клиент" as ExternalСlient
+
+box Service #LightCyan
+	participant ClientProxy
+	participant ClientManager
+end box
+box Legacy #LightBlue
+	participant LegacyClientAdapter
+end box
+
+ExternalСlient -> ClientProxy: Запрос списка клиентов
+alt работа с Legacy
+ClientProxy ->> LegacyClientAdapter: Запрос списка клиентов из Legacy
+LegacyClientAdapter -->> ClientProxy: Получение списка клиентов
+ClientProxy ->> ClientProxy: Обновление кэша
+end
+ClientProxy -> ClientManager: Запрос списка клиентов
+ClientManager --> ClientProxy: Получение списка клиентов
+ClientProxy -> ClientProxy: Получение недостающих из кэша
+ExternalСlient <-- ClientProxy: Получение списка клиентов
+ClientProxy -> ClientManager: Сохранение недостающих клиентов
+
+
+@enduml
