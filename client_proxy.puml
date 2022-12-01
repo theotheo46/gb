@@ -2,7 +2,7 @@
 'https://plantuml.com/sequence-diagram
 
 autonumber
-title Прокси динамической миграции
+'title Прокси динамической миграции
 
 participant "Иной сервис" as ExternalService
 

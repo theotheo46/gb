@@ -1,0 +1,39 @@
+@startuml
+
+autonumber
+'title Прокси динамической миграции
+
+participant Client
+
+box HelpDesk #LightCyan
+	participant HelpDeskManager
+	participant HelpDeskUser
+end box
+box SL3 #LightBlue
+	participant SL3Manager
+	participant SL3User
+end box
+
+Client -> HelpDeskUser: Звонок с сообщением о проблеме
+Client <-- HelpDeskUser: Запрос кода заказа
+Client -> HelpDeskUser: Сообщить кода заказа
+HelpDeskUser -> HelpDeskUser: Поиск клиента и\nзаказа в DB
+group Обращение
+group Инцидент
+HelpDeskUser -> HelpDeskUser: Создание обращения и инцидента\n с назначением на рабочую группу
+HelpDeskManager <-- HelpDeskUser: Уведомить о создании обращения
+HelpDeskUser -> SL3Manager: Уведомить о создании инцидента
+SL3Manager -> SL3User: Назначить инцидент
+SL3User -> SL3User: Взять инцидент в работу
+HelpDeskUser <-- SL3User: Уточнение деталей
+HelpDeskUser -> SL3User: Сообщение об уточнениях
+SL3User -> SL3User: Закрыть инцидент
+end
+SL3Manager <-- SL3User: Уведомить о закрытии инцидента
+SL3User -> SL3User: Закрыть обращение
+end
+HelpDeskUser <-- SL3User: Уведомить о закрытии обращения
+HelpDeskManager <-- SL3User: Уведомить о закрытии обращения
+Client <-- SL3User: Уведомить о закрытии обращения
+
+@enduml
