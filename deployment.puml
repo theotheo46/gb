@@ -2,17 +2,27 @@
 'https://plantuml.com/deployment-diagram
 left to right direction
 skinparam linetype ortho
-node "Application Server" as Apps {
-    node Services {
-        component Clients
-        component Orders
-        component ServiceRequests
-        component Incidents
+rectangle "Филиал" {
+    node "Сервер приложений" as Apps {
+        node Services {
+            component Clients
+            component Orders
+            component ServiceRequests
+            component Incidents
+        }
     }
+    node Grafana {
+        artifact Dashboard
+    }
+
+    node Prometheus {
+        database Clickhouse
+    }
+
 }
 
 
-node "Replication cluster" as Database {
+node "Региональный узел кластера репликации" as Database {
     database Postgers {
         artifact "Clients schema"
         artifact "Orders schema"
@@ -25,13 +35,6 @@ node Keycloak {
     artifact Realm
 }
 
-node Grafana {
-    artifact Dashboard
-}
-
-node Prometheus {
-    database Clickhouse
-}
 
 Apps --> Database
 Services --> Keycloak
