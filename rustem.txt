@@ -21,10 +21,10 @@
 
 13. Физический вид
 Компоненты и версии компонентов
- БД - Postgres pro enterprise 14, Clickhouse
- оркестратор - микросервисов kubernetes, openshift
- авторизация  - ingress nginx controller
- отчетность - prometheus, grafana
+ БД - Postgres pro enterprise 14, Clickhouse v22.11.2.30-stable
+ оркестратор - микросервисов kubernetes 1.25.4 , openshift 4.11
+ авторизация  - ingress nginx controller 2.4.2
+ отчетность - prometheus 2.40.5, grafana 9.3.1
 
 
 Размер, производительность и масштабирование - DB
