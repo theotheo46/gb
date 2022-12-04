@@ -23,7 +23,7 @@ rectangle "Филиал" {
 
 
 node "Региональный узел кластера репликации" as Database {
-    database Postgers {
+    database Postgres {
         artifact "Clients schema"
         artifact "Orders schema"
         artifact "ServiceRequests schema"
