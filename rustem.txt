@@ -42,7 +42,7 @@ Postgres DB
       880000000             58 GB      Table "SERVICE"
              30             30 KB      Table "SERVICEGROUP"
       880000000            176 GB      Table "SERVICEREQUEST"
-     2500000000           500 GB      Table "STATUS"
+     2500000000            500 GB      Table "STATUS"
 -------------------------             -----------------------      ----------------------------------------------------
                           1TB      Total estimated space
 48cpu 512GB 4TB raid10 nvme от 1млн руб -  300тыс tps, можно протестить pgbench, Apache JMeter
